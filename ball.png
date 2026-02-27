@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c6vmxe62bc3u5"
+path="res://.godot/imported/04 - Silent Forest.wav-cb8c044a4b6dfe81aa5b42da176b1686.sample"
+
+[deps]
+
+source_file="res://art/04 - Silent Forest.wav"
+dest_files=["res://.godot/imported/04 - Silent Forest.wav-cb8c044a4b6dfe81aa5b42da176b1686.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

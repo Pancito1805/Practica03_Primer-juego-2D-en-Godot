@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cerxuagwc8tk2"]
+
+[ext_resource type="Texture2D" uid="uid://cmde7au4pyc7b" path="res://art/heart.png" id="1_5ccl2"]
+[ext_resource type="Script" uid="uid://dwrc650u34ufx" path="res://HeartPowerUp.gd" id="1_36vtp"]
+[ext_resource type="AudioStream" uid="uid://bo7l8053bv41r" path="res://art/Power Up 1.wav" id="2_vfinm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ccl2"]
+radius = 18.248287
+
+[node name="HeartPowerUp" type="Area2D" unique_id=596676778]
+light_mask = 2
+collision_layer = 2
+script = ExtResource("1_36vtp")
+pickup_sound = ExtResource("2_vfinm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=36272987]
+light_mask = 2
+position = Vector2(-19.625002, -69.37499)
+scale = Vector2(0.050357148, 0.052499987)
+texture = ExtResource("1_5ccl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047040152]
+light_mask = 2
+position = Vector2(-20, -71)
+shape = SubResource("CircleShape2D_5ccl2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

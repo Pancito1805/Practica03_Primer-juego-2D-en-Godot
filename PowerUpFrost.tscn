@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://8d4kdefoxi6p"]
+
+[ext_resource type="Script" uid="uid://duspum1wxqyd3" path="res://PowerUpFrost.gd" id="1_2sl1f"]
+[ext_resource type="Texture2D" uid="uid://cbxcekfdbf1dj" path="res://art/coponieve.png" id="2_nbp4w"]
+[ext_resource type="AudioStream" uid="uid://ccpi1l0q43s8l" path="res://art/EM_ICE_CAST_SPELL_SOFT_01.wav" id="2_wdhsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdhsv"]
+radius = 33.01515
+
+[node name="PowerUpFrost" type="Area2D" unique_id=1535014455]
+light_mask = 2
+collision_layer = 2
+script = ExtResource("1_2sl1f")
+pickup_sound = ExtResource("2_wdhsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1326030522]
+light_mask = 2
+position = Vector2(-21.00003, 20.687498)
+scale = Vector2(0.05752966, 0.05564985)
+texture = ExtResource("2_nbp4w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2015264789]
+light_mask = 2
+position = Vector2(-21, 20)
+shape = SubResource("CircleShape2D_wdhsv")

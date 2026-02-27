@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://4vwrqjegqwpj"]
+
+[ext_resource type="Script" uid="uid://bmg52irdnqvvt" path="res://Player.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dq0xjsqht1aqs" path="res://DeathParticles.tscn" id="2_e80uo"]
+[ext_resource type="PackedScene" uid="uid://jhf577kaly2v" path="res://Projectile.tscn" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://dxhh4wyli6so7" path="res://art/Mage-Cyan.png" id="4_e80uo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kne1u"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e80uo"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdg3f"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtqjt"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(384, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ncpa"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(416, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi0c6"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(448, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxr5p"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp6x6"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tkgg"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ohk"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(384, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oudfo"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(416, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6rpx"]
+atlas = ExtResource("4_e80uo")
+region = Rect2(448, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kne1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e80uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdg3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtqjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ncpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi0c6")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxr5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp6x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tkgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6ohk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oudfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6rpx")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 27.0
+height = 68.0
+
+[sub_resource type="Gradient" id="3"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="4"]
+gradient = SubResource("3")
+
+[sub_resource type="Curve" id="5"]
+_data = [Vector2(0.00501098, 0.5), 0.0, 0.0, 0, 0, Vector2(0.994989, 0.324), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="6"]
+curve = SubResource("5")
+
+[sub_resource type="ParticleProcessMaterial" id="7"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("6")
+color_ramp = SubResource("4")
+
+[node name="Player" type="Area2D" unique_id=1100529655]
+z_index = 10
+collision_mask = 6
+priority = 1
+script = ExtResource("1")
+death_animation_scene = ExtResource("2_e80uo")
+projectile_scene = ExtResource("2_kne1u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1035825484]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("1")
+animation = &"right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=532626316]
+position = Vector2(-1, -1)
+shape = SubResource("2")
+
+[node name="Trail" type="GPUParticles2D" parent="." unique_id=1781401281]
+z_index = -1
+amount = 10
+speed_scale = 2.0
+process_material = SubResource("7")
+
+[node name="ProjectileOrigin" type="Marker2D" parent="." unique_id=1890468847]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

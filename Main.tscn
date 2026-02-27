@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cyfwty2q3rdse"]
+
+[ext_resource type="Script" uid="uid://8y7dxoxm51e6" path="res://Main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://rkdnhqgf2hpj" path="res://Mob.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://4vwrqjegqwpj" path="res://Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b32bwwbplnegh" path="res://PowerUpShield.tscn" id="3_03owx"]
+[ext_resource type="PackedScene" uid="uid://ccqoreueuxdb7" path="res://HUD.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cerxuagwc8tk2" path="res://HeartPowerUp.tscn" id="4_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://8d4kdefoxi6p" path="res://PowerUpFrost.tscn" id="5_20pc6"]
+[ext_resource type="PackedScene" uid="uid://jhf577kaly2v" path="res://Projectile.tscn" id="6_c6i3y"]
+[ext_resource type="AudioStream" uid="uid://e10s4thvf7ja" path="res://art/Hit 1.wav" id="7_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://ddu8c8100cs14" path="res://PauseMenu.tscn" id="7_lgr22"]
+[ext_resource type="AudioStream" uid="uid://c6vmxe62bc3u5" path="res://art/04 - Silent Forest.wav" id="8_20pc6"]
+[ext_resource type="PackedScene" uid="uid://p77o5bdo7nu4" path="res://GameOver.tscn" id="8_trn2v"]
+[ext_resource type="AudioStream" uid="uid://ds7dswp5lg4st" path="res://art/Game Over 1.wav" id="9_20pc6"]
+[ext_resource type="Texture2D" uid="uid://c83rkx4spmpof" path="res://art/forest.png" id="13_c6i3y"]
+
+[sub_resource type="Curve2D" id="1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1081, 3, 0, 0, 0, 0, 1076, 471, 0, 0, 0, 0, 1069, 722, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="Main" type="Node" unique_id=2089146175]
+script = ExtResource("1")
+mob_scenes = Array[PackedScene]([ExtResource("2")])
+powerup_scenes = Array[PackedScene]([ExtResource("3_03owx")])
+heart_powerup_scenes = Array[PackedScene]([ExtResource("4_wkp8b")])
+frost_powerup_scenes = Array[PackedScene]([ExtResource("5_20pc6")])
+projectile_scene = ExtResource("6_c6i3y")
+hurt_sound = ExtResource("7_c2ibq")
+
+[node name="Player" parent="." unique_id=829223998 instance=ExtResource("3")]
+position = Vector2(-120, 390)
+
+[node name="MobTimer" type="Timer" parent="." unique_id=1690529792]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1933191831]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=407494189]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=669912487]
+position = Vector2(541, 479)
+
+[node name="MobPath" type="Path2D" parent="." unique_id=1971437515]
+curve = SubResource("1")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=93587244]
+rotation = 0.0027752009
+
+[node name="HUD" parent="." unique_id=1656337104 instance=ExtResource("4")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=368043142]
+stream = ExtResource("8_20pc6")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=880547915]
+stream = ExtResource("9_20pc6")
+volume_db = 2.0
+
+[node name="PauseMenu" parent="." unique_id=2141295009 instance=ExtResource("7_lgr22")]
+
+[node name="GameOver" parent="." unique_id=751603694 instance=ExtResource("8_trn2v")]
+process_mode = 3
+
+[node name="PowerUpTimer" type="Timer" parent="." unique_id=298229000]
+wait_time = 10.0
+
+[node name="HeartTimer" type="Timer" parent="." unique_id=1537968279]
+wait_time = 1.685
+
+[node name="FrostTimer" type="Timer" parent="." unique_id=1831014573]
+wait_time = 20.0
+
+[node name="PickupSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=505609332]
+volume_db = 16.0
+
+[node name="Background" type="TextureRect" parent="." unique_id=1564642426]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_c6i3y")
+expand_mode = 3
+stretch_mode = 6
+
+[connection signal="area_entered" from="Player" to="." method="_on_player_area_entered"]
+[connection signal="body_entered" from="Player" to="." method="_on_player_body_entered"]
+[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
+[connection signal="timeout" from="HeartTimer" to="." method="_on_heart_timer_timeout"]

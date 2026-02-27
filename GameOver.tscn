@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://p77o5bdo7nu4"]
+
+[ext_resource type="Script" uid="uid://c0tr8bfx587bb" path="res://GameOver.gd" id="1_40baj"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=751603694]
+script = ExtResource("1_40baj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1869820519]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.12, 0.12, 0.81960785)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=578860026]
+offset_left = 384.0
+offset_top = 216.0
+offset_right = 709.0
+offset_bottom = 488.0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=401192656]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Reiniciar" type="Button" parent="VBoxContainer" unique_id=1270966060]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_font_sizes/font_size = 40
+text = "Reiniciar"
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer" unique_id=1510403329]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Puntuación: 0"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Reiniciar" to="." method="_on_Reiniciar_pressed"]

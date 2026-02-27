@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dq0xjsqht1aqs"]
+
+[ext_resource type="Script" uid="uid://be57b346wii50" path="res://DeathAnimation.gd" id="1_bdpmu"]
+[ext_resource type="Texture2D" uid="uid://bkme28hb3386d" path="res://art/ExplosionFrames/Explosion01_frame1.png" id="2_6s3ux"]
+[ext_resource type="Texture2D" uid="uid://6rhkxk2k04f1" path="res://art/ExplosionFrames/Explosion01_frame2.png" id="3_oeu5h"]
+[ext_resource type="Texture2D" uid="uid://dnhkok4rt3mf" path="res://art/ExplosionFrames/Explosion01_frame3.png" id="4_1d7g5"]
+[ext_resource type="Texture2D" uid="uid://dla1hb3n2as5p" path="res://art/ExplosionFrames/Explosion01_frame4.png" id="5_jejlo"]
+[ext_resource type="Texture2D" uid="uid://tk5top864k3k" path="res://art/ExplosionFrames/Explosion01_frame5.png" id="6_qabbx"]
+[ext_resource type="Texture2D" uid="uid://c3vr7pf6jt2x6" path="res://art/ExplosionFrames/Explosion01_frame6.png" id="7_0swh7"]
+[ext_resource type="Texture2D" uid="uid://ocbtmbwihydn" path="res://art/ExplosionFrames/Explosion01_frame7.png" id="8_1s7hf"]
+[ext_resource type="Texture2D" uid="uid://c8c2cp66f1v1p" path="res://art/ExplosionFrames/Explosion01_frame8.png" id="9_lpft4"]
+[ext_resource type="Texture2D" uid="uid://74uarfsy8h0c" path="res://art/ExplosionFrames/Explosion01_frame9.png" id="10_74ek4"]
+[ext_resource type="Texture2D" uid="uid://bu6klyhxdjyyu" path="res://art/ExplosionFrames/Explosion01_frame10.png" id="11_uc1y1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckqfp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6s3ux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oeu5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1d7g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jejlo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qabbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0swh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1s7hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lpft4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_74ek4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uc1y1")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
+
+[node name="DeathAnimation" type="Node2D" unique_id=1776585123]
+script = ExtResource("1_bdpmu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2033594688]
+position = Vector2(53.500004, -4.500002)
+scale = Vector2(2.6718752, 2.484375)
+sprite_frames = SubResource("SpriteFrames_ckqfp")
+animation = &"death"
+frame = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=2031286634]

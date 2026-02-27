@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b32bwwbplnegh"]
+
+[ext_resource type="Script" uid="uid://bl62j8114uew5" path="res://PowerUpShield.gd" id="1_k141l"]
+[ext_resource type="AudioStream" uid="uid://bj2q22clh0k1s" path="res://art/Misc 1.wav" id="2_deg5r"]
+[ext_resource type="Texture2D" uid="uid://dol406w8uhmtp" path="res://art/shield.png" id="2_l5sa8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5sa8"]
+radius = 25.0
+
+[node name="PowerUpShield" type="Area2D" unique_id=1621593497]
+light_mask = 2
+collision_layer = 2
+script = ExtResource("1_k141l")
+pickup_sound = ExtResource("2_deg5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648082817]
+light_mask = 2
+position = Vector2(18, 18)
+shape = SubResource("CircleShape2D_l5sa8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1000501335]
+light_mask = 2
+position = Vector2(26, 13)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_l5sa8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
